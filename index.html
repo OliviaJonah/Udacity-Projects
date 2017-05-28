@@ -9,17 +9,23 @@
 <div id="chartContainer"></div>
 <script type="text/javascript">
   var svg = dimple.newSvg("#chartContainer", 590, 400);
-    d3.csv("/Udacity/DataVis/cleaned_baseball.csv", function (data) {
+    d3.csv("cleaned_baseball.csv", function (data) {
+       data.forEach(function(d){
+        d["Category"] = d.avg_category;
+        d["Average HR"] = d.mean_HR;
+        d["HR %"] = d.HR_Percent;
+        d["Handedness"] = d.handedness
+      })      
       var myChart = new dimple.chart(svg, data);
       myChart.setBounds(60, 30, 510, 330);
-      var x = myChart.addCategoryAxis("x", ["avg_category"]);
+      var x = myChart.addCategoryAxis("x", ["Category"]);
       x.addOrderRule(["[0.1, 0.15)", "[0.15, 0.2)", "[0.2, 0.25)", "[0.25, 0.3)", "[0.3, 0.35)"]);
       x.title = "Batting Average Grade";
-      var y = myChart.addMeasureAxis("y", "mean_HR");
-      myChart.addMeasureAxis("p", "HR_Percent");
-      myChart.addMeasureAxis("z", "HR_Percent");
+       var y = myChart.addMeasureAxis("y", "Average HR");
+     myChart.addMeasureAxis("p", "HR %");
+      myChart.addMeasureAxis("z", "HR %");
       y.title = "HR average";
-      var pies = myChart.addSeries(["handedness"], dimple.plot.pie);
+      var pies = myChart.addSeries(["Handedness"], dimple.plot.pie);
       pies.innerRadius = 10;
       pies.outerRadius = 25;
       myChart.addLegend(65, 10, 510, 20, "right");
