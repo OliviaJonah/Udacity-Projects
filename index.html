@@ -8,6 +8,8 @@
 <h2>HR average / ratio by handedness</h2>
 <div id="chartContainer"></div>
 <script type="text/javascript">
+  var width = 590;
+  var height = 400;
   var svg = dimple.newSvg("#chartContainer", 590, 400);
     d3.csv("cleaned_baseball.csv", function (data) {
        data.forEach(function(d){
