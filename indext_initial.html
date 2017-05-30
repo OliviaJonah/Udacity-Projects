@@ -3,19 +3,35 @@
   <script src="/js/d3.js"></script>
   <script src="/js/dimple.v2.1.6.min.js"></script>
   <script type="text/javascript">
-    var svg = dimple.newSvg("#chartContainer", 590, 400);
+     var width = 590;
+        var height = 400;
+
+        var  bounds = {
+                    x: 60,
+                    y: 30,
+                    width: 510,
+                    height: 330
+                };
+
+        var  legDim = {
+                    x: 65,
+                    y: 10,
+                    width: 510,
+                    height: 20
+                };
+    var svg = dimple.newSvg("#chartContainer", width, height);
       // d3.tsv("data/example_data.tsv", function (data) {
       d3.csv("cleaned_baseball.csv", function (data) {
         // Create the chart
         var myChart = new dimple.chart(svg, data);
-        myChart.setBounds(60, 30, 420, 330)
+        myChart.setBounds(bounds.x, bounds.y, bounds.width, bounds.height)
 
         // Create a standard bubble of SKUs by Price and Sales Value
         // We are coloring by Owner as that will be the key in the legend
         myChart.addMeasureAxis("x", "avg");
         myChart.addMeasureAxis("y", "HR");
         myChart.addSeries(["name", "handedness"], dimple.plot.bubble);
-        var myLegend = myChart.addLegend(530, 100, 60, 300, "Right");
+        myChart.addLegend(legDim.x, legDim.y, legDim.width, legDim.height, 'right');
         myChart.draw();
         
         // This is a critical step.  By doing this we orphan the legend. This
