@@ -10,7 +10,7 @@ This dataset is about the information of baseball players:
 
 The relation between batting average (`avg`) and home runs (`HR`).
 Players with a hiigher `avg` tends to hit more home runs than lower `avg` players.
-Also,there is the belief that many great hitters were left-handed. 
+this shows that this belief that many great hitters were left-handed holds. 
 This visualization, shows that there is pretty high home run ratio of left-handed among top batting average players.
 
 ## Design ##
